@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undangan Main Bersama</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="background-glow"></div>
+
+  <main class="container">
+    <!-- Halaman Undangan -->
+    <section class="card active" id="invitePage">
+      <div class="badge">special invitation</div>
+      <h1>Main sama kating yang katanya 'narsis banget njir'</h1>
+      <p class="subtitle">
+        Pokoknya main sama SAYA, awas aja sampe gamau! udah eprot gini bjir. <br> Sometimes there's no opportunities left. <br> - leemonadee
+      </p>
+
+      <div class="details">
+        <div class="detail-item">
+          <span class="label">Acara</span>
+          <span class="value">Nugas bareng</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Waktu</span>
+          <span class="value">Jum'at, 19 Juni 2026, 14:00 WIB - 18.00 WIB</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Lokasi</span>
+          <span class="value">Rahasiaaaa</span>
+        </div>
+      </div>
+
+      <p class="question">Kamu mau ikut main bareng aku?</p>
+
+      <div class="button-area" id="buttonArea">
+        <button id="yesBtn" class="btn btn-yes">Iya</button>
+        <button id="noBtn" class="btn btn-no">Tidak</button>
+      </div>
+        <div class="invite-photo-wrap">
+          <img class="invite-photo" src="meme.jpg" alt="Foto Undangan" />
+        </div>
+      </section>
+
+    <!-- Halaman Outfit -->
+    <section class="card" id="outfitPage">
+      <div class="badge">outfit recommendation</div>
+      <h2>kali kali tentuin outfit aseeek</h2>
+      <p class="subtitle">
+        gua rekomendasiin tema <strong>biru navy, hitam sama  putih</strong>
+        biar cakep hehehhe
+      </p>
+
+      <div class="outfit-card">
+        <h3>Outfit ideas</h3>
+        <div class="outfit-visual combined-visual">
+          <img class="outfit-image" src="outifideas.png" alt="Outfit Lelaki" />
+        </div>
+
+        <div class="outfit-lists">
+          <div class="outfit-list">
+            <h4>gua</h4>
+            <ul>
+              <li>Kemeja atau polo <strong>putih</strong></li>
+              <li>Celana chino atau trousers <strong>hitam</strong></li>
+              <li>Outer <strong>biru navy</strong></li>
+              <li>Sepatu putih atau loafers navy</li>
+            </ul>
+          </div>
+
+          <div class="outfit-list">
+            <h4>erika dwi hartantoooooooooooo</h4>
+            <ul>
+              <li>Blouse atau knit top <strong>navy</strong></li>
+              <li>Rok midi atau rok lipit <strong>hitam/putih</strong></li>
+              <li>Aksesori tipis warna <strong>putih</strong></li>
+              <li>Flat shoes, heels, atau sneakers putih</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        Ditunggu yaa, semoga harinya jadi makin spesial ✨
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const invitePage = document.getElementById("invitePage");
+    const outfitPage = document.getElementById("outfitPage");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const buttonArea = document.getElementById("buttonArea");
+
+    let yesScale = 1;
+    let noClickCount = 0;
+
+    yesBtn.addEventListener("click", () => {
+      invitePage.classList.remove("active");
+      outfitPage.classList.add("active");
+    });
+
+    noBtn.addEventListener("click", () => {
+      noClickCount++;
+
+      yesScale += 0.18;
+      yesBtn.style.transform = `scale(${yesScale})`;
+
+      const areaRect = buttonArea.getBoundingClientRect();
+      const noRect = noBtn.getBoundingClientRect();
+
+      const maxX = areaRect.width - noRect.width;
+      const maxY = 120;
+
+      const randomX = Math.max(0, Math.floor(Math.random() * maxX));
+      const randomY = Math.floor(Math.random() * maxY);
+
+      noBtn.style.position = "absolute";
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+
+      if (noClickCount > 5) {
+        noBtn.textContent = "Yakin nih?";
+      }
+
+      if (noClickCount > 10) {
+        noBtn.textContent = "Coba pilih iya 😳";
+      }
+    });
+  </script>
+</body>
+</html>
